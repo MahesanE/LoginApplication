@@ -1,0 +1,9 @@
+<div>
+  <h2 i18n="@@welcomeMessage">Welcome, {{ userDetails?.name }}!</h2>
+  <p i18n="@@usernameLabel">Username: {{ userDetails?.username }}</p>
+  <p i18n="@@roleLabel">Role: {{ userDetails?.role }}</p>
+  <button (click)="logout()" i18n="@@logoutButton">Logout</button>
+  <div *ngIf="userDetails?.role === 'manager'">
+    <a [routerLink]="['/', 'manager']" i18n="@@managerDashboardLink">Access Manager Dashboard</a>
+  </div>
+</div>
