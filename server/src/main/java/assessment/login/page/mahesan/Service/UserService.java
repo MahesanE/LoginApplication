@@ -18,15 +18,14 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean allowLogin(String userId, String password){
+    public boolean allowLogin(String userId, String password) {
 
         Optional<User> checkUser = userRepository.findByUserId(userId);
-        if(checkUser.isPresent()){
+        if (checkUser.isPresent()) {
             User user = checkUser.get();
             return passwordEncoder.matches(password, user.getPassword());
         }
         return false;
     }
-    
-    
+
 }

@@ -8,7 +8,7 @@ import { UserDetails } from '../models/userdetails.model';
 })
 export class LoginAppService {
   private loggedIn = false;
-  private apiUrl = "http://localhost:8080/api";
+  private apiUrl = "https://kind-intuition-production.up.railway.app/api";
   userDetails: UserDetails | null = null;
 
   constructor(private http: HttpClient) { }

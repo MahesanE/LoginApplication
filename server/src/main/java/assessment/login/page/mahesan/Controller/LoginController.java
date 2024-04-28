@@ -59,27 +59,23 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-public ResponseEntity<Void> register(@RequestBody RegisterDto registerDto) {
-    // Create a new User entity
-    User user = new User();
-    user.setUserId(registerDto.getUsername());
-    user.setPassword(passwordEncoder.encode(registerDto.getPassword())); // Encode the password
+    public ResponseEntity<Void> register(@RequestBody RegisterDto registerDto) {
 
-    // Save the User entity
-    User savedUser = userRepository.save(user);
+        User user = new User();
+        user.setUserId(registerDto.getUsername());
+        user.setPassword(passwordEncoder.encode(registerDto.getPassword())); // Encode the password
 
-    // Create a new UserDetails entity
-    UserDetails userDetails = new UserDetails();
-    userDetails.setName(registerDto.getName());
-    userDetails.setUsername(registerDto.getUsername());
-    userDetails.setRole(registerDto.getRole());
+        User savedUser = userRepository.save(user);
 
-    // Associate the saved User entity with the UserDetails entity
-    userDetails.setUser(savedUser);
+        UserDetails userDetails = new UserDetails();
+        userDetails.setName(registerDto.getName());
+        userDetails.setUsername(registerDto.getUsername());
+        userDetails.setRole(registerDto.getRole());
 
-    // Save the UserDetails entity
-    userDetailsService.saveUserDetails(userDetails);
+        userDetails.setUser(savedUser);
 
-    return ResponseEntity.ok().build();
-}
+        userDetailsService.saveUserDetails(userDetails);
+
+        return ResponseEntity.ok().build();
+    }
 }
